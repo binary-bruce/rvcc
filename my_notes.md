@@ -1,3 +1,14 @@
+## [4] 改进报错信息 [Commit](https://github.com/binary-bruce/rvcc/commit/a6164d82206b4d97a097f5156df7aacb80dc5a0a)
+* Introduced a global variable to store the input(it's fine as it's immutable) which is needed for locating the error position
+  * How to handle if the input is multi-line code instead of single line string?
+* There are two phases that can have erros: 1. tokenizing; 2. parsing tokens while generating assembly code
+* `fprintf(stderr, "%*s", Pos, "")`: `*` indicate the width is specified by next parameter(Pos)
+* `vfprintf`: Write formatted data from variable argument list to file
+* New error functions:
+  * `void errorTok(Token *Tok, char *Fmt, ...)`
+  * `void errorAt(char *Loc, char *Fmt, ...)`: it calls verrorAt
+  * `void verrorAt(char *Loc, char *Fmt, va_list VA)`
+
 ## [3] 加入一个终结符解析器，来解析终结符间的空格 [Commit](https://github.com/binary-bruce/rvcc/commit/4887f1b19741f8726fede76fecc4423bfcee37b9)
 * For small/toy/short-lived programs, to simplify, it's ok not to free a memory.
 * [va_list](https://hackernoon.com/what-is-va_list-in-c-exploring-the-secrets-of-ft_printf) for variable arguments
@@ -19,7 +30,7 @@ Practise: use `strtol` to extract numbers from "1+23-44"
 * `ret` is actually pseudo-instruction for `jalr x0, x1, 0`
   * jalr: jump and link register
   * jal: jump and link
-  * jalr vs jal: (read more in [here](https://inst.eecs.berkeley.edu/~cs61c/su22/pdfs/discussions/disc04-sols.pdf)
+  * jalr vs jal: read more in [here](https://inst.eecs.berkeley.edu/~cs61c/su22/pdfs/discussions/disc04-sols.pdf)
     * `j label` is a pseudo-instruction for `jal x0, label`. (Since it’s writing the return address to x0, it’s effectively discarding it)
     * jalr is used to return to the memory address specified in the second argumen
     * Keep in mind that jal jumps to a label (which is translated into an immediate by the assembler), whereas jalr jumps to an address stored in a register, which is set at runtime
