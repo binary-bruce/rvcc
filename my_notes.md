@@ -1,3 +1,13 @@
+## [5] 支持 * / () 运算符 [Commit] (https://github.com/binary-bruce/rvcc/commit/8d4d27f68eb91f9b4534fcae19a422dbb57506c8)
+* Goal: generate assembly code to calculate expression `1-8/(2*2)+3*6` instead of calculating the result in C
+* With the introduction of new operator(`*`, `/`, and `()`) of higher priority, it's not possible to parse the tokens from left to right linearly
+* Expression tree(AST) is introduced to handle the priority
+  * Process: tokenize expression -> build expression tree -> generate code
+ 
+Maybe I should try to implement it with Rust. It's hard to read the [C code](https://github.com/binary-bruce/rvcc/commit/8d4d27f68eb91f9b4534fcae19a422dbb57506c8)
+
+[commits](https://github.com/binary-bruce/rvcc/commits/main/?before=526a99db083b9a6be8784b7066102dd3bc237aaa+315)
+
 ## [4] 改进报错信息 [Commit](https://github.com/binary-bruce/rvcc/commit/a6164d82206b4d97a097f5156df7aacb80dc5a0a)
 * Introduced a global variable to store the input(it's fine as it's immutable) which is needed for locating the error position
   * How to handle if the input is multi-line code instead of single line string?
