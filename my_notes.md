@@ -1,4 +1,4 @@
-## [5] 支持 * / () 运算符 [Commit] (https://github.com/binary-bruce/rvcc/commit/8d4d27f68eb91f9b4534fcae19a422dbb57506c8)
+## [5] 支持 * / () 运算符 [Commit](https://github.com/binary-bruce/rvcc/commit/8d4d27f68eb91f9b4534fcae19a422dbb57506c8)
 * Goal: generate assembly code to calculate expression `1-8/(2*2)+3*6` instead of calculating the result in C
 * With the introduction of new operator(`*`, `/`, and `()`) of higher priority, it's not possible to parse the tokens from left to right linearly
 * Expression tree(AST) is introduced to handle the priority
